@@ -32,7 +32,7 @@ export default function Home() {
       });
   };
 
-  const isLoading = !!token;
+  const isLoading = true;
 
   return (
     <div
@@ -45,7 +45,7 @@ export default function Home() {
         {isLoading && <Skeleton />}
 
         <div className="grid place-content-center row-start-2 h-full w-full">
-          <NotationField onRoll={(notation: string) => console.log(notation)} />
+          <NotationField />
         </div>
       </main>
     </div>

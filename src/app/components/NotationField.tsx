@@ -27,16 +27,13 @@ const getIcon = (die: number) => {
   }
 };
 
-export const NotationField = ({
-  onRoll,
-}: {
-  onRoll: (notation: string) => void;
-}) => {
+export const NotationField = () => {
   const [isOpen, setIsOpen] = useState(true);
   const ref = useRef<HTMLDivElement | null>(null);
 
   //Assumption: Handling die button addition to the input field and the user typing additional inputs into the field is a more complex interaction than I have time to implement in this eval. When I did this for Quest Portal, I used Recoil as a state management for the feature. This allowed quick and dynamic string building for the notation as well as user feedback on the die buttons. Additionally I did some validation to allow us to inform the user when they entered an input which was not a valid dice notation.
   const [notation, setNotation] = useState<string | undefined>(undefined);
+  const onRoll = (n: string) => console.log(n);
 
   const dice = [20, 100, 10, 8, 6, 4];
 
