@@ -1,0 +1,15 @@
+.header {
+  position: absolute;
+  min-height: 68px;
+  max-height: 68px;
+  left: 0px;
+  top: 0px;
+}
+
+.logo {
+  position: absolute;
+  width: 207px;
+  height: 28px;
+  left: 20px;
+  top: 22px;
+}
