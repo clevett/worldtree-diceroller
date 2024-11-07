@@ -11,7 +11,7 @@ export const DiceInput = ({
 }) => {
   const [value, setValue] = useState(defaultValue);
 
-  //Assumption: A better option would be used for a released feature. This just being used for a quick demo.
+  //Assumption: This will be replaced before finishing the feature. There are better ways to handle state between components and this is just used for the demo.
   useEffect(() => {
     if (value !== defaultValue) {
       setValue(defaultValue);

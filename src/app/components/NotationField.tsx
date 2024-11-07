@@ -27,7 +27,11 @@ const getIcon = (die: number) => {
   }
 };
 
-export const NotationField = () => {
+export const NotationField = ({
+  onRoll,
+}: {
+  onRoll: (notation: string) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(true);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -57,7 +61,7 @@ export const NotationField = () => {
         <div className={styles.menu} ref={ref}>
           <div className={styles.page}>
             {dice.map((die) => (
-              //Assumption: Move this button into its own component for better state handling and to keep the code clean. Just pass the die value into a shared state. This can be done with Recoil, Context, or a Hook hosted by the parent component.
+              //Assumption: Move this button into its own component for better state handling and to keep the code clean. Pass the die value into a shared state. This can be done with Recoil, Context, or a Hook hosted by the parent component.
               <button
                 //Assumption: Setup a simple check to see if the button is active. If so add a text- color class to the button per the designs.
                 className={styles.dice}
@@ -69,8 +73,11 @@ export const NotationField = () => {
                 {`-d${die}`}
               </button>
             ))}
-            {/* Assumption: Setup a simple check to see any dice button is clicked then update the color of the button as active. */}
-            <button className={styles.roll} onClick={() => setIsOpen(false)}>
+            {/* Assumption: Setup a simple check to see any dice button is clicked then update the color of the button as active. Preferably if notation is undefine there is some sort of alert for the user so they are told to enter a notation. */}
+            <button
+              className={styles.roll}
+              onClick={() => onRoll(notation ?? "")}
+            >
               Roll
             </button>
           </div>

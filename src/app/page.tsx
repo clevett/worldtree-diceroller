@@ -1,14 +1,38 @@
 import { Header, NotationField, Skeleton } from "@/app/components";
 
 import styles from "./page.module.css";
+import axios from "axios";
 
 //Assumption: FULL-STACK ENGINEER WITH FRONT-END FOCUS - I will allocate 3 hours to front end details as that is the focus. In a real planning phase and assuming this project is a foundation, I would evaluate using tools like Storybook and customizing Tailwind to our design system before coding the feature. Perhaps even making all the initial base components with design approval before starting the actual project. "Slow Down to Speed Up". I will note ideas related to this when they come to mind but I will not take the time to implement them given this is a tech challenge.
 
-//Assumption: At 3 hour mark, moved onto interacting with the API. I've similar functionality for menu and building roll notation when I was at Quest Portal. That feature can be seen here: https://www.questportal.com/roll
+//Assumption: At 3 hour mark, moved onto interacting with the API. I've released a similar feature for menu and building roll notation when I was at Quest Portal. That feature can be previewed here: https://www.questportal.com/roll
 
 export default function Home() {
-  //Assumption: State zero is the loading state. Replace this with a state related to fetching the data. Not using NextJS features related to loading as World Tree may not be using NextJS.
-  const isLoading = true;
+  const token = axios
+    .post(process.env.API + "/api/access-token")
+    .then((res) => {
+      return res.data.accessToken;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  const onRoll = async (notation: string) => {
+    console.log(notation);
+    await axios
+      .get(
+        process.env.API +
+          `/api/dice-rolls/${notation}/?accessToken=${token}&verbose=true`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const isLoading = !!token;
 
   return (
     <div
@@ -21,7 +45,7 @@ export default function Home() {
         {isLoading && <Skeleton />}
 
         <div className="grid place-content-center row-start-2 h-full w-full">
-          <NotationField />
+          <NotationField onRoll={(notation: string) => console.log(notation)} />
         </div>
       </main>
     </div>
