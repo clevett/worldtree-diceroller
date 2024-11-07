@@ -31,8 +31,8 @@ export const NotationField = () => {
   const [isOpen, setIsOpen] = useState(true);
   const ref = useRef<HTMLDivElement | null>(null);
 
-  //Assumption: Handling die button addition to the input field and the user typing additional inputs into the field is a more complex interaction than I have time to implement in this eval. When I did this for Quest Portal, I used Recoil as a state management for the feature. This allowed quick and dynamic string building for the notation as well as user feedback on the die buttons. Additionally I did some validation on the input field to allow us to inform the user when they entered an input which was not a valid dice notation.
-  const [notation, setNotation] = useState("");
+  //Assumption: Handling die button addition to the input field and the user typing additional inputs into the field is a more complex interaction than I have time to implement in this eval. When I did this for Quest Portal, I used Recoil as a state management for the feature. This allowed quick and dynamic string building for the notation as well as user feedback on the die buttons. Additionally I did some validation to allow us to inform the user when they entered an input which was not a valid dice notation.
+  const [notation, setNotation] = useState<string | undefined>(undefined);
 
   const dice = [20, 100, 10, 8, 6, 4];
 
@@ -47,8 +47,7 @@ export const NotationField = () => {
   }, [ref]);
 
   const updateNotation = (sides: number) => {
-    console.log(notation);
-    setNotation(!notation ? notation + `+1d${sides}` : `1d${sides}`);
+    setNotation(notation ? notation + `+1d${sides}` : `/r 1d${sides}`);
   };
 
   return (
@@ -58,7 +57,9 @@ export const NotationField = () => {
         <div className={styles.menu} ref={ref}>
           <div className={styles.page}>
             {dice.map((die) => (
+              //Assumption: Move this button into its own component for better state handling and to keep the code clean. Just pass the die value into a shared state. This can be done with Recoil, Context, or a Hook hosted by the parent component.
               <button
+                //Assumption: Setup a simple check to see if the button is active. If so add a text- color class to the button per the designs.
                 className={styles.dice}
                 key={`die-button-${die}`}
                 onClick={() => updateNotation(die)}
@@ -68,6 +69,7 @@ export const NotationField = () => {
                 {`-d${die}`}
               </button>
             ))}
+            {/* Assumption: Setup a simple check to see any dice button is clicked then update the color of the button as active. */}
             <button className={styles.roll} onClick={() => setIsOpen(false)}>
               Roll
             </button>
@@ -80,7 +82,10 @@ export const NotationField = () => {
         <Image src={icon_button} alt={"dice menu"} />
       </button>
 
-      <DiceInput onSubmit={(value) => console.log(value)} />
+      <DiceInput
+        onSubmit={(value) => setNotation(value)}
+        defaultValue={notation}
+      />
     </div>
   );
 };

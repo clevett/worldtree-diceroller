@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./DiceInput.module.css";
 
 export const DiceInput = ({
@@ -10,6 +10,13 @@ export const DiceInput = ({
   onSubmit: (value: string) => void;
 }) => {
   const [value, setValue] = useState(defaultValue);
+
+  //Assumption: A better option would be used for a released feature. This just being used for a quick demo.
+  useEffect(() => {
+    if (value !== defaultValue) {
+      setValue(defaultValue);
+    }
+  }, [defaultValue]);
 
   const handleSubmit = (value: string) => {
     onSubmit(value);

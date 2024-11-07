@@ -111,4 +111,5 @@ button.dice {
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+  color: theme("colors.dark.outline");
 }
