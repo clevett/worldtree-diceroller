@@ -1,0 +1,114 @@
+.input_layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 12px 0px 6px;
+  gap: theme("gap.2");
+
+  height: 48px;
+  width: 100%;
+
+  /* Assumption: Width is copy/pasted from Figma but on smaller screen this width is too large. A more dynamic width calculation is needed. A min width was applied with Tailwind for md+ screens and 100% is being used so the input looks better on small screens */
+  /* width: 480px; */
+
+  background: linear-gradient(
+      0deg,
+      rgba(65, 222, 180, 0.14),
+      rgba(65, 222, 180, 0.14)
+    ),
+    theme("colors.neutral.10");
+  border-radius: 24px;
+}
+
+.menu {
+  /* Frame 26086461 */
+
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 0px;
+  gap: 10px;
+
+  position: absolute;
+  width: 114px;
+  height: 328px;
+  bottom: 55px;
+
+  /* M3/surfaces/dark/surface5
+
+Surface 5
+*/
+  background: linear-gradient(
+      0deg,
+      rgba(65, 222, 180, 0.14),
+      rgba(65, 222, 180, 0.14)
+    ),
+    theme("colors.neutral.10");
+  /* M3/sys/dark/outline-variant */
+  border: 1px solid #49454f;
+  /* M3/Elevation Dark/1 */
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+}
+
+.page {
+  /* Pages */
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  width: 114px;
+  height: 312px;
+}
+
+button.roll {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  width: 90px;
+  height: 40px;
+
+  /* M3/state-layers/dark/on-surface/opacity-0.12 */
+  border: 1px solid rgba(230, 225, 229, 0.12);
+  border-radius: 4px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+  align-self: center;
+
+  color: theme("colors.dark.outline");
+}
+
+button.dice {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 8px 8px 12px;
+  gap: 10px;
+
+  width: 114px;
+  height: 40px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}

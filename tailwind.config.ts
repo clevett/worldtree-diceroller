@@ -13,6 +13,10 @@ const config: Config = {
         neutral: {
           10: "#001E2D",
           60: "#49454f",
+          99: "#D9D9D9",
+        },
+        dark: {
+          outline: "#89938E",
         },
       },
       fontFamily: {
