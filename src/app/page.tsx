@@ -3,9 +3,7 @@ import { Header, NotationField, Skeleton } from "@/app/components";
 import styles from "./page.module.css";
 import axios from "axios";
 
-//Assumption: FULL-STACK ENGINEER WITH FRONT-END FOCUS - I will allocate 3 hours to front end details as that is the focus. In a real planning phase and assuming this project is a foundation, I would evaluate using tools like Storybook and customizing Tailwind to our design system before coding the feature. Perhaps even making all the initial base components with design approval before starting the actual project. "Slow Down to Speed Up". I will note ideas related to this when they come to mind but I will not take the time to implement them given this is a tech challenge.
-
-//Assumption: At 3 hour mark, moved onto interacting with the API. I've released a similar feature for menu and building roll notation when I was at Quest Portal. That feature can be previewed here: https://www.questportal.com/roll
+//Assumption: FULL-STACK ENGINEER WITH FRONT-END FOCUS - I will allocate 3 hours to front end details as that is the focus. In a real planning phase and assuming this project is a foundation, I would evaluate using tools like Storybook, customizing Tailwind, and building a design library to match the design system before coding the feature. "Slow Down to Speed Up".
 
 export default function Home() {
   const token = axios
@@ -17,6 +15,7 @@ export default function Home() {
       console.error(error);
     });
 
+  //Assumption: Directions stated not to share the API address. I started to setup an env file and works on serve but ran into an issue passing this function to the client component. This was my first time trying to setup API service in NextJS and need to read the documentation to resolve it but hit my 4 hour limit. :)
   const onRoll = async (notation: string) => {
     console.log(notation);
     await axios
@@ -41,7 +40,7 @@ export default function Home() {
       <Header />
 
       <main className="grid grid-rows-[1fr_100px] content-center">
-        {/* Assumption: This will be used as a loading state and may include a animation for a skeleton effect. If team is open to it, I would use Storybook to create front end components so design could QA states such as loading, error, and success. Storybook could also be used in the future for sharing the component library if we want to build a "create your own" feature. */}
+        {/* Assumption: This will be used as a loading state and may include a animation for a skeleton effect. If team is open to it, I would use Storybook to create front end components in so design could QA states such as loading, error, and success. Storybook could also be used in the future for sharing the component library if we want to build a "create your own" feature. */}
         {isLoading && <Skeleton />}
 
         <div className="grid place-content-center row-start-2 h-full w-full">

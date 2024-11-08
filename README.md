@@ -6,10 +6,11 @@ World Tree Dice Roller Project
 
 1. Run `npm install`
 2. Run `npm run dev` from worldtree-diceroller folder
+3. .env file with the API service, `API={address}`
 
 ## Assumptions
 
-Assumptions can be found through the code with `Assumptions: `.
+Assumptions can be found through the code with `Assumptions: `. One my development mentors told me it more important to be able to explain your thoughts than implement the perfect solution during a code eval. I've done my best to leave comments related to my thought process and how I might approach provided less time constraints.
 
 ## Front End Implementation
 
@@ -17,12 +18,8 @@ Limited front end implementation to 3 hours. Initial menu has been created and r
 
 ## API Implementation
 
-Ran into obstacles with NextJS. This my first time implementing axios into Next and more reading is required for best practices related to environmental variables.
+Ran into obstacles with NextJS relate to env. This my first time implementing API service into NextJs. In practice to solve this issue I would read through the documentation, search StackOverflow, and reach out for help if I was unable to make progress on a solution within couple hours.
 
-## Notes on Mental State at end of eval
+## Quest Portal Implementation
 
-Doing my best to respect the four hour time crunch left me flustered at the end trying to balance a strong attention to detail versus respecting the directions. My code quality and progress in the last two hours took a hit as I was trying to rush to finish as much as I could rather than doing the best I could. Jason and the directions assurance are appreciated but pressure to do well on a technical eval in a time line is a strong motivator. In a real life scenario, I would have forced myself to take breaks at each hour interval in order to avoid or elevate the stress of the eval.
-
-## Requested Feedback
-
-I will greatly appreciate all feedback. In particular feedback on balancing tasks during a Full Stack with Front End focus. As Front End Developer, I try to focus a lot of detail and reusability. Often then can take up a bit too much time to then highly backend ability. On the job there is time to balance both but in the time constraints of a tech eval this can be a challenge. :)
+I have implemented this feature and a macro build for Quest Portal. I used an open source library with BabylonJS + Ammo for the rolls as the animation is smoother. A hook called by the parent manage the menu's state in the menu implementation but Recoil (later replaced by Jotai) was used in the formula builder. Roll announcements are sent to SendBird and a watch pulls them out of Firebase to update all users. Different parts of this feature were abstracted in out monorepo allowing reusability between marketing website (NextJS), Quest Portal app, and mobile app. The menu can be previewed here: https://www.questportal.com/roll
