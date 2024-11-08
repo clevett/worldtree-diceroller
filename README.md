@@ -22,4 +22,6 @@ Ran into obstacles with NextJS relate to env. This my first time implementing AP
 
 ## Quest Portal Implementation
 
-I have implemented this feature and a macro build for Quest Portal. I used an open source library with BabylonJS + Ammo for the rolls as the animation is smoother. A hook called by the parent manage the menu's state in the menu implementation but Recoil (later replaced by Jotai) was used in the formula builder. Roll announcements are sent to SendBird and a watch pulls them out of Firebase to update all users. Different parts of this feature were abstracted in out monorepo allowing reusability between marketing website (NextJS), Quest Portal app, and mobile app. The menu can be previewed here: https://www.questportal.com/roll
+I have implemented this feature and a macro build for Quest Portal. I used an open source library with BabylonJS + Ammo for the rolls as the animation is smoother. A hook called by the parent manage the state in the menu implementation but Recoil (later replaced by Jotai) was used in the formula builder. Roll announcements are sent to SendBird and a watch pulls them out of Firebase to update all users. Different parts of this feature were abstracted in our monorepo allowing reusability between marketing website (NextJS), Quest Portal app, and mobile app. The menu can be previewed here: https://www.questportal.com/roll
+
+![dice_builder](https://github.com/user-attachments/assets/599b63f5-9c07-44e2-82b2-27cab54fecb0)
