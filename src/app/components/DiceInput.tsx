@@ -32,6 +32,7 @@ export const DiceInput = ({
     setValue(defaultValue);
   };
 
+  //Assumption: Designs will likely remove the outline on the input but this is important for accessibility. Leaving it for now and would find a comprising solution.
   return (
     <input
       className={`md:min-w-[480px] ${styles.input}`}

@@ -6,7 +6,7 @@ World Tree Dice Roller Project
 
 1. Run `npm install`
 2. Run `npm run dev` from worldtree-diceroller folder
-3. .env file with the API service, `API={address}`
+3. .env file with the API services, `API={address}` and `NEXT_PUBLIC_ROLLS="$API"`
 
 ## Assumptions
 
