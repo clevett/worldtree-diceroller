@@ -1,6 +1,6 @@
 # Technical Challenge
 
-World Tree Dice Roller Project. The project was limited to roughly four hours with directions and priority intentionally kept vague to gauge force the candidate to prioritize.
+World Tree Dice Roller technical challenge. I spent about six hours on the project focusing more on the front end.
 
 ## Start the project
 
@@ -11,6 +11,10 @@ World Tree Dice Roller Project. The project was limited to roughly four hours wi
 ## Comments
 
 Comments can be found in the project to note short cuts taken for the purpose of tech eval. Additionally there are comments where I would normally ask opinions or for clarity from team members as part of collaboration.
+
+### Special Note
+
+I have implemented a similar feature on behalf of Quest Portal which can be demo'd at [www.questportal.com/roll](https://www.questportal.com/roll) . This was done using a forked version of [Fantastic Dice](https://github.com/3d-dice).
 
 ## Directions
 
