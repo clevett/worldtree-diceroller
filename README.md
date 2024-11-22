@@ -40,7 +40,10 @@ Implement a front-end dice roller as a Single Page Application (SPA)
 
 ### METHOD AND CONSTRAINTS
 
-● You must set-up a Github repository for this challenge and make it available to World Tree to review.
-○ Your code should be committed to the repository and the commit history visible.
-○ Please add a meaningful summary to each commit.
-● Document any assumptions you make and provide that documentation with your submission.
+  ● You must set-up a Github repository for this challenge and make it available to World Tree to review.
+  
+  ○ Your code should be committed to the repository and the commit history visible.
+  
+  ○ Please add a meaningful summary to each commit.
+  
+  ● Document any assumptions you make and provide that documentation with your submission.
