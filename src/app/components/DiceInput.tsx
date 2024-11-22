@@ -11,12 +11,12 @@ export const DiceInput = ({
 }) => {
   const [value, setValue] = useState(defaultValue);
 
-  //Assumption: This will be replaced before finishing the feature. There are better ways to handle state between components and this is just used for the demo.
+  //Assumption: This will be replaced before finishing the feature. There are better ways to handle state between components and this is just used for the eval.
   useEffect(() => {
     if (value !== defaultValue) {
       setValue(defaultValue);
     }
-  }, [defaultValue]);
+  }, [defaultValue, value]);
 
   const handleSubmit = (value: string) => {
     onSubmit(value);

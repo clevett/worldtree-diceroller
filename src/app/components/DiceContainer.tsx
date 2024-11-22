@@ -35,13 +35,6 @@ type User = {
   icon: JSX.Element;
 };
 
-type Announcement = {
-  timestamp: number;
-  user: User;
-  result: any; //Assumption: This will be typed out but for sake of demo using any.
-  id: number;
-};
-
 const rollExample = {
   id: 1,
   user: getLocalUser(),
@@ -90,26 +83,31 @@ const rollExample = {
   },
 };
 
+type Announcement = {
+  timestamp: number;
+  user: User;
+  result: (typeof rollExample)["result"];
+  id: number;
+};
+
 const Types = {
   DICE: "dice",
   CONST: "const",
 };
 
-//Assumption: Color theming would be done as a first step to make a matching the designs a lot easier. For now skip lot of the design details like colors, padding, and spacing even though it pains me to do so. My assumption based on the last email was that you want to see how the results object would be handled rather my ability to match the designs pixel perfect.
+//Color theming would be done as a first step to make a matching the designs a lot easier. For now skip lot of the design details like colors, padding, and spacing.
 
 export const DiceContainer = ({ token }: { token: string }) => {
-  //Assumption: I assume there will be an easy way to get the local logged in user. Else I will make one.
+  //TODO: Replace this with a websocket to get the announcements from other users.
   const localUser = getLocalUser();
 
-  const getDiceNotation = (
-    result: { type: string; allRolls: number[]; keptRolls: number[] }[]
-  ) => {
-    let notations: JSX.Element[] = [];
+  const getDiceNotation = (result: Announcement["result"]["results"]) => {
+    const notations: JSX.Element[] = [];
     //Loop through the results and wrap any kept dice rolls with a span using className text-99 to give it the eye catching lighter color.
     //This solution simple mapping is based on the Figma example. I would ask questions about how this feature might be built out and use in the future to make the this helper function more scalable.
     result.forEach((e) => {
-      if (e.type === Types.DICE && e.allRolls.length > 1) {
-        //Loops through the allRolls. If the number is included in kepRolls then then highlight it with then use the lighter text color. Keeping in mind that we could roll 3d20s and get three 10s. In which case we only need to highlight two of the three. Wrap the result from with with () and use pipe | to seperate them.
+      if (e.type === Types.DICE && e.allRolls && e.allRolls.length > 1) {
+        //Loops through the allRolls. If the number is included in kepRolls then then highlight it with then use the lighter text color. Keeping in mind that we could roll 3d20s and get three 10s. In which case we only need to highlight two of the three. Wrap the result from with with () and use pipe | to separate them.
       }
 
       if (e.type === Types.DICE && e.allRolls === e.keptRolls) {
@@ -141,7 +139,6 @@ export const DiceContainer = ({ token }: { token: string }) => {
     rollExample,
   ]);
 
-  //Assumption: Directions stated not to share the API address. I started to setup an env file and works on serve but ran into an issue passing this function to the client component. This was my first time trying to setup API service in NextJS and need to read the documentation to resolve it but hit my 4 hour limit. :)
   const onRoll = async (notation: string) => {
     await axios
       .get(
@@ -149,8 +146,7 @@ export const DiceContainer = ({ token }: { token: string }) => {
       )
       .then((res: { data: { notation: string; sum: number } }) => {
         const announcement = {
-          //Assumption: We would unique ID library such as UUID
-          id: announcements.length + 1,
+          id: announcements.length + 1, //UUID likely needed here.
           user: getGuestUser(),
           timestamp: Date.now(),
           result: res.data,
@@ -164,19 +160,19 @@ export const DiceContainer = ({ token }: { token: string }) => {
         setAnnouncements(update);
       })
       .catch((error: unknown) => {
-        //Assumption: This should like set a state or message to inform the user when their are problems. We might also put in an incident tracking if we are planning to use something like Sentry.
+        //This should set a message to inform the user when their are problems. We might also put in an incident tracking if we are planning to use something like Sentry.
         console.error(error);
       });
   };
 
   return (
     <>
-      {/* Assumption: This section will need scroll/overflow improvements. Right now it will break the layout when do to many rolls. There are libraries for this. Set the min/max for web demo but this would need adjustment for mobile. */}
+      {/* This section will need scroll/overflow improvements. Right now it will break the layout when do to many rolls. There are libraries for this. Set the min/max for web demo but this would need adjustment for mobile. */}
       <div className="grid gap-2 auto-rows-min max-w-[480px] min-w-[480px] justify-self-center">
         {announcements.map((a: Announcement) => {
           //Assumption: Users would
           const isLocalUser = a.user.id === localUser.id;
-          //Assumption: Assuming the roll announcement with the background is the local user. If so then simple up updating the styles to add a background and align the content to the right. Rolls from other users will be aligned to the left with a transparent background.
+          //Assuming the roll announcement with the background is the local user. If so then simple up updating the styles to add a background and align the content to the right. Rolls from other users will be aligned to the left with a transparent background.
           const localStyles = isLocalUser
             ? "bg-[#41deb424] justify-self-end rounded-lg"
             : "bg-transparent self-start grid-cols-[32px_1fr]";

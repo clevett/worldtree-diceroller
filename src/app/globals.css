@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Assumption: Design System has light and dark which implies a future theme implementation toggle. The first step I would do in a real implementation would be to ensure the Design System is fully setup in Tailwind. All nested css would reference this Design System themes. */
+/* Design System has light and dark which implies a future theme implementation toggle. The first step I would do in a real implementation would be to ensure the Design System is fully setup in Tailwind. All nested css would reference this Design System themes. */
 
 html,
 body {

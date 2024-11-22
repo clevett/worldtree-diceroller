@@ -1,7 +1,6 @@
-/* Assumption: To save time much of this code is copy/pasted from Figma. In a real feature,I would be more critical of Figma's styles and would use css variables/shared styles based on a theme such as from Tailwind in order to avoid hard coding too many pixel values. */
+/* To save time much of this code is copy/pasted from Figma. In a real feature,I would be more critical of Figma's styles and would use css variables/shared styles based on a theme such as from Tailwind in order to avoid hard coding too many pixel values. */
 
 .surface {
-  /* Assumption: Matching style names to Figma makes reference easier between code and design. In a real implementation, I would setup CSS variable names for a reference using the Design System in Figma as a source of truth. */
   background: linear-gradient(
       0deg,
       rgba(65, 222, 180, 0.05),
